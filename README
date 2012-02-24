@@ -1,8 +1,11 @@
 MBBS Calendar
 -------------
 
-Copyright (c) Robert McLeay <robert@fearthecow.net>
-This code is under the GPL 3, see the file LICENSE for details.
+Copyright (c) Robert McLeay <robert@fearthecow.net> 
+This code is under the Affero GPL 3, see the file LICENSE for details.
+
+In short, if you modify this code and run a server elsewhere, you must make
+your source available. There is also NO WARRANTY.
 
 Why?
 ----
@@ -18,6 +21,17 @@ It is written using mod_perl2 and requires Apache2 and MySQL. If you just wish
 to use this software, go to the website instead:
 
 	http://mbbscalendar.fearthecow.net/
+
+To install the software, you'll need to put this whole folder in /opt/, symlink
+the apache config into /etc/apache2/sites-enabled/.
+
+You then need to edit mysql_db.sql, and import it into MySQL to create the
+database, and then edit the following files accordingly:
+
+apache.conf
+perl-lib/MBBS/DB.pm
+
+Restart Apache, and you should be good to go!
 
 Cheers,
 
