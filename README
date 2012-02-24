@@ -1,0 +1,24 @@
+MBBS Calendar
+-------------
+
+Copyright (c) Robert McLeay <robert@fearthecow.net>
+This code is under the GPL 3, see the file LICENSE for details.
+
+Why?
+----
+
+Although the UQ School of Medicine makes an iCalendar / vCalendar file
+available of our timetables, this file is broken in a number of ways. It also
+cannot be subscribed to as you would subscribe to a normal calendar. Given that
+the school seems prone to giving us timetable changes at rather short notice,
+it would be useful to have the calendar auto-sync to our phones and laptops.
+This is what this software does. 
+
+It is written using mod_perl2 and requires Apache2 and MySQL. If you just wish
+to use this software, go to the website instead:
+
+	http://mbbscalendar.fearthecow.net/
+
+Cheers,
+
+Rob!

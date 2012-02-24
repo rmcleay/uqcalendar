@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<title>UQ SOM - MBBS Calendar</title>
+<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+<div id="title">
+	<h1><img src='logo.png' height="103" align="absmiddle">UQ SOM - MBBS Calendar Subscription Page</h1>
+</div>
+<div id="menu">
+<ul>
+<li><a href="index.html">Home</a></li><li><a href="https://my.som.uq.edu.au/MBBSTimetable/" target='_new'>MBBS Timetable (SOM)</a></li>
+</ul>
+</div>
+<div id="content">
+
+	<p><i>Warning:</i> This does not yet support Google Calendar. You can download the file on the link below and import it manually (at least the lecture titles will be fixed and it'll be easier than clicking around in the SOM site), but Google Calendar does not currently support subscribing to calendars that require a username and password.</p>
+
+	<h2>How to subscribe:</h2>
+
+<ol>
+	<li>In iCal on your Mac (not tested elsewhere yet), click on the "Calendar"
+	menu, then subscribe.</li>
+       
+	<li>Copy and paste the following URL into the box:
+	<blockquote><a href='https://mbbscalendar.fearthecow.net/calendar/'>https://mbbscalendar.fearthecow.net/calendar/</a></blockquote>
+	</li>
+	<li>Enter your UQ username and password. You may also need to accept (hit continue) the SSL certificate. More on these below.</li>
+	<li>Make sure to set the calendar to auto-update - e.g. hourly.</li>
+	<li>Hit OK and enjoy your auto-syncing calendar that doesn't call everything "Live Lecture"!</li>
+</ol>
+
+<p><b>Note:</b> In order not to irritate the UQ SOM IT staff, this site will fetch a new calendar from the SOM no more than once every 3 hours. It will only grab the current week and next week's data. It will cache a uniquely salted (and thus irreversible) hash of your password to authenticate you to provide the calendar again in the meantime.</p>
+
+<h2>If you can't subscribe to a https url:</h2>
+
+<p>If iCal or your calendar program will not allow you to subscribe to an HTTPS calendar, then (at your own risk), you can choose to use a non-SSL version. <b>Your password will be transmitted in plain-text, so you use this at your own risk.</b> The URL to subscribe to instead is:</p>
+
+	<blockquote>http://mbbscalendar.fearthecow.net/calendar-nonssl/</blockquote>
+
+
+<h2>What and Why:</h2>
+
+<p> Although the school of medicine makes an iCalendar / vCalendar file
+available of our timetables, this file is broken in a number of ways. It also cannot be subscribed to as you would subscribe to a normal calendar. Given that the school seems prone to giving us timetable change at rather short notice, it would be useful to have the calendar auto-sync to our phones and laptops. This is what this page does.
+</p>
+
+<p><b>THIS IS PROBABLY NOT EVEN ALPHA QUALITY</b>. It has only been tested in iCal on Mac. Your mileage may
+vary. Don't blame me if you miss an exam.</p> 
+
+<h2>Security notes:</h2>
+
+<p>This service requires your UQ username and password as it simulates a
+web-browsing session to the SOM MBBS Timetable page to get your timetable data.
+Ultimately, you have to trust that I am honest, handle your password correctly,
+and that I won't keep a copy of it, pretend to be you, and change your degree in sinet to
+be agricultural science.</p>
+
+<p>Note, however, that I use this site myself, so I do have vested interest in
+maintaining good security (plus, I also used to work as a sysadmin).</p>
+
+<p><b>Technical guarantees:</b></p>
+<ul>
+	<li>I strongly recommend that you use the SSL version. It's the same encryption as your bank, except I'm just too cheap to buy a certificate, so you get a warning when you first set it up.</li>
+	<li>I will never store your password in any format that is reversible. I use a salted hash function with a random salt using the SHA-1 algorithm.</li>
+</ul>
+
+</div>
+<div id="footer"> Copyright &copy; 2011, 
+	<a href="mailto:robert@fearthecow.net">Robert McLeay</a>. All rights reserved, but the code is GPL2 on <a href='https://bitbucket.org/chesftc/mbbscalendar/'>BitBucket under chesftc/mbbscalendar</a>.
+</div> 
+</body>
+</html>

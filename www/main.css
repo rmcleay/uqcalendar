@@ -1,0 +1,78 @@
+
+body {
+	font: normal 14px; 
+	font-family: Century Gothic, Verdana, sans-serif;
+	color: #666666;
+	background-color: #193c74;
+	width: 80%;
+	margin-left: auto; /* This centres the div */
+	margin-right: auto;
+	padding: 20px;
+}
+
+#title h1 {
+	font-size: 28px;
+}
+
+.highlight { color: #ee0000; }
+
+#content {
+	background-color: #ffffff;
+	padding: 1px 2% 10px 2%;
+}
+
+#content h2 { 
+	color: #791414; 
+	font-variant: small-caps;
+}
+
+#menu {
+	background:url(nav.png);
+	color: #ffffff;
+	height: 38px;
+	font-size: 120%;
+	border-left: 1px solid #000;
+	border-right: 1px solid #000;
+}
+
+#menu ul {
+	padding: 0px;
+	list-style: none;
+	margin: 0;
+	vertical-align: center;
+}
+
+#menu ul li {
+	list-style-type: none;
+	display: inline;
+	padding: 6px 20px;
+	vertical-align: center;
+	border-right: 1px solid #000;
+	margin: 0px;
+	line-height: 38px;
+}
+
+#menu ul li a {
+	color: #ffffff;
+	text-decoration: none;
+}
+
+#menu ul li:hover {
+	background-color: #000000;
+}
+
+#title {
+	color: #ffffff;
+}
+
+#footer {
+	color: #888888;
+	font-size: 11px;
+	text-align:center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#footer a { color: #999cff; }
+#footer a:hover { color: #99ccff; }
+#footer a:visited { color: #99ccff; }
