@@ -8,6 +8,8 @@ use Date::Calc qw(Today Day_of_Week Add_Delta_Days);
 use Date::Format;
 use Date::Parse;
 
+use Data::Dumper;
+
 our $VERSION = '1.00';
 
 our $LOGIN_URL = 'https://my.som.uq.edu.au/MBBSTimetable/Login.aspx?ReturnUrl=%2fMBBSTimetable%2fHome.aspx';
@@ -81,7 +83,8 @@ sub get_this_week {
 	# Get the correct link for the date
 	my $count = 0;
 	my $success = 0;
-	foreach my $link ($mech->find_all_links()) {
+	my $link;
+	foreach $link ($mech->find_all_links()) {
 		my $attrs = $link->attrs();
 
 		if (defined($$attrs{'title'}) && $$attrs{'title'} eq $mbbs_date) {
@@ -95,7 +98,7 @@ sub get_this_week {
 	return 0 unless $success;
 
 	# Extract the required form values
-	my $link = @{$mech->find_all_links()}[$count];
+	$link = @{$mech->find_all_links()}[$count];
 	my $attrs = $link->attrs();
 	$$attrs{'href'} =~ m/javascript:__doPostBack\('(.+hrefWeek)',/;
 	my $eventTarget = $1;
@@ -134,15 +137,16 @@ sub get_last_week {
 	while (Day_of_Week($year, $month, $day) != 7) {
 		($year, $month, $day) = Add_Delta_Days($year, $month, $day, -1);
 	} 
-
+	
 	# Format it to match the website
 	my $date = str2time("$year-$month-$day");
 	my $mbbs_date = time2str("%d %B %Y", $date);
-
+	
 	# Get the correct link for the date
 	my $count = 0;
 	my $success = 0;
-	foreach my $link ($mech->find_all_links()) {
+	my $link;
+	foreach $link ($mech->find_all_links()) {
 		my $attrs = $link->attrs();
 
 		if (defined($$attrs{'title'}) && $$attrs{'title'} eq $mbbs_date) {
@@ -156,7 +160,7 @@ sub get_last_week {
 	return 0 unless $success;
 
 	# Extract the required form values
-	my $link = @{$mech->find_all_links()}[$count];
+	$link = @{$mech->find_all_links()}[$count];
 	my $attrs = $link->attrs();
 	$$attrs{'href'} =~ m/javascript:__doPostBack\('(.+hrefWeek)',/;
 	my $eventTarget = $1;
