@@ -2,13 +2,8 @@ package MBBS::SOMCalendar;
 
 use strict;
 use warnings;
-use Data::Dumper;
 use WWW::Mechanize;
-use Date::Calc qw(Today Day_of_Week Add_Delta_Days);
-use Date::Format;
 use Date::Parse;
-
-use Data::Dumper;
 
 our $VERSION = '1.00';
 
@@ -59,22 +54,14 @@ sub login {
 	return 1;
 }
 
-sub get_this_week {
-	my ($self, undef) = @_;
+sub get_week {
+	my ($self, $year, $month, $day) = @_;
 	my $mech = $self->{mech};
 
 	#
-	# Get next week's timetable
+	# Get timetable
 	#
 	$mech->get( $TIMETABLE_URL );
-
-	# Get today's date
-	my ($year, $month, $day) = Today();
-
-	# Make it the next available sunday if today isn't sunday
-	while (Day_of_Week($year, $month, $day) != 7) {
-		($year, $month, $day) = Add_Delta_Days($year, $month, $day, 1);
-	} 
 
 	# Format it to match the website
 	my $date = str2time("$year-$month-$day");
@@ -118,68 +105,6 @@ sub get_this_week {
 
 	return 0 if ($ical =~ m/No calendar Info found/);
 
-	return _cleanup_ical($ical);
-}
-
-sub get_last_week {
-	my ($self, undef) = @_;
-	my $mech = $self->{mech};
-
-	#
-	# Get next week's timetable
-	#
-	$mech->get( $TIMETABLE_URL );
-
-	# Get today's date
-	my ($year, $month, $day) = Today();
-
-	# Make it the next available sunday if today isn't sunday
-	while (Day_of_Week($year, $month, $day) != 7) {
-		($year, $month, $day) = Add_Delta_Days($year, $month, $day, -1);
-	} 
-	
-	# Format it to match the website
-	my $date = str2time("$year-$month-$day");
-	my $mbbs_date = time2str("%d %B %Y", $date);
-	
-	# Get the correct link for the date
-	my $count = 0;
-	my $success = 0;
-	my $link;
-	foreach $link ($mech->find_all_links()) {
-		my $attrs = $link->attrs();
-
-		if (defined($$attrs{'title'}) && $$attrs{'title'} eq $mbbs_date) {
-			#  This is next week!
-			$success = 1;
-			last;
-		}
-		$count++;
-	}
-
-	return 0 unless $success;
-
-	# Extract the required form values
-	$link = @{$mech->find_all_links()}[$count];
-	my $attrs = $link->attrs();
-	$$attrs{'href'} =~ m/javascript:__doPostBack\('(.+hrefWeek)',/;
-	my $eventTarget = $1;
-
-	# Set the form to send the XML post with the data
-	$mech->form_number(1);
-	$mech->set_fields('__EVENTTARGET' => $eventTarget);
-	$mech->submit();
-
-	#
-	# Download the iCal file
-	#
-	$mech->get($ICAL_URL);
-
-	# The iCal file
-	my $ical = $mech->content;
-
-	return 0 if ($ical =~ m/No calendar Info found/);
-	
 	return _cleanup_ical($ical);
 }
 
