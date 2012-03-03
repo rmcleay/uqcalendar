@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadDescription</key>
+			<string>Configures Subscribed Calendars</string>
+			<key>PayloadDisplayName</key>
+			<string>Subscribed Calendar (MBBS Timetable)</string>
+			<key>PayloadIdentifier</key>
+			<string>net.fearthecow.mbbscalendar.CalSub</string>
+			<key>PayloadOrganization</key>
+			<string>Robert McLeay</string>
+			<key>PayloadType</key>
+			<string>com.apple.subscribedcalendar.account</string>
+			<key>PayloadUUID</key>
+			<string>F7466E7D-B194-4E37-B4CD-8CBD720ED71D</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>SubCalAccountDescription</key>
+			<string>MBBS Timetable</string>
+			<key>SubCalAccountHostName</key>
+			<string>mbbscalendar.fearthecow.net/calendar/</string>
+			<key>SubCalAccountPassword</key>
+			<string>###INSERTPASSWORD###</string>
+			<key>SubCalAccountUseSSL</key>
+			<true/>
+			<key>SubCalAccountUsername</key>
+			<string>###INSERTUSERNAME###</string>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>This will configure your MBBS Timetable (scraped from the SOM) to be subscribed to on your calendar, and automatically updated.</string>
+	<key>PayloadDisplayName</key>
+	<string>UQ MBBS Timetable</string>
+	<key>PayloadIdentifier</key>
+	<string>net.fearthecow.mbbscalendar</string>
+	<key>PayloadOrganization</key>
+	<string>Robert McLeay</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>06320EBA-E5A2-4BE5-B32B-9A3B02A472B2</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+</dict>
+</plist>
