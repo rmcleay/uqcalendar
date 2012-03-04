@@ -74,10 +74,11 @@ sub download_new_ics() {
 	# Get today's date
 	my ($year, $month, $day) = Today();
 
-	# Make it the next available sunday if today isn't sunday
+	# Make it last sunday if today isn't sunday
 	while (Day_of_Week($year, $month, $day) != 7) {
-		($year, $month, $day) = Add_Delta_Days($year, $month, $day, 1);
+		($year, $month, $day) = Add_Delta_Days($year, $month, $day, -1);
 	}
+
 	# Get calendar
 	my $last_week_ical = $mbbs->get_week($year, $month, $day) or die "Couldn't get last week's calendar.\n";
 	
