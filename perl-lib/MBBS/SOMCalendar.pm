@@ -3,6 +3,7 @@ package MBBS::SOMCalendar;
 use strict;
 use warnings;
 use WWW::Mechanize;
+use Date::Format;
 use Date::Parse;
 
 our $VERSION = '1.00';
