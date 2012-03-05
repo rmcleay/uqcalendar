@@ -57,7 +57,7 @@ sub handler {
 
 #########################
 
-sub download_new_ics() {
+sub download_new_ics {
 
 	my $USERNAME = shift;
 	my $PASSWORD = shift;
