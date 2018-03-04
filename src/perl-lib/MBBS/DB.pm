@@ -6,7 +6,7 @@ use warnings;
 use DBI;
 
 #Database related constants
-my $database="mbbscalendar.sqlite";
+my $database="/opt/mbbscalendar/db/mbbscalendar.sqlite";
 my $database_server="";
 my $database_server_type="SQLite";
 my $database_user_id="";
@@ -20,7 +20,7 @@ use vars qw/$connected $dbh/;
 sub connect
 {
 	return $dbh if ($connected && $dbh->ping);
-	$dbh = DBI->connect("DBI:$database_server_type:$database:$database_server", $database_user_id, $database_password) or die;
+	$dbh = DBI->connect("dbi:$database_server_type:dbname=$database", $database_user_id, $database_password) or die;
 	#$dbh->{PrintError} = 0;
 	$connected = 1;
 	return $dbh;

@@ -9,7 +9,7 @@ use Crypt::SaltedHash;
 use Date::Calc qw(Today Day_of_Week Add_Delta_Days);
 
 use MBBS::DB;
-use MBBS::SOMCalendar;
+use MBBS::SINetCalendar;
 
 ######
 # Firstly, we hook into apache2

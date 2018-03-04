@@ -5,11 +5,12 @@ use warnings;
 use WWW::Mechanize;
 use Date::Format;
 use Date::Parse;
+use URL::Encode qw( url_encode );
 
 our $VERSION = '1.00';
 
 our $LOGIN_URL = 'https://www.sinet.uq.edu.au/ps/uqsinetsignin.html';
-our $TIMETABLE_URL = 'https://www.sinet.uq.edu.au/psp/ps/EMPLOYEE/HRMS/c/UQMY_STUDENT.UQMY_TM_TBL_ICAL.GBL?&STRM=6820&FolderPath=PORTAL_ROOT_OBJECT.UQ_MYSINET.UQ_MYSINET_TIMETABLE.UQMY_TM_TBL_ICAL_GBL&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder';
+our $TIMETABLE_URL = 'https://www.sinet.uq.edu.au/psc/ps/EMPLOYEE/HRMS/c/UQMY_STUDENT.UQMY_TM_TBL_ICAL.GBL?&STRM=6820&FolderPath=PORTAL_ROOT_OBJECT.UQ_MYSINET.UQ_MYSINET_TIMETABLE.UQMY_TM_TBL_ICAL_GBL&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder&PortalActualURL=https%3a%2f%2fwww.sinet.uq.edu.au%2fpsc%2fps%2fEMPLOYEE%2fHRMS%2fc%2fUQMY_STUDENT.UQMY_TM_TBL_ICAL.GBL%3f%26STRM%3d6820&PortalContentURL=https%3a%2f%2fwww.sinet.uq.edu.au%2fpsc%2fps%2fEMPLOYEE%2fHRMS%2fc%2fUQMY_STUDENT.UQMY_TM_TBL_ICAL.GBL&PortalContentProvider=HRMS&PortalCRefLabel=Timetable%20iCalendar%20Download&PortalRegistryName=EMPLOYEE&PortalServletURI=https%3a%2f%2fwww.sinet.uq.edu.au%2fpsp%2fps%2f&PortalURI=https%3a%2f%2fwww.sinet.uq.edu.au%2fpsc%2fps%2f&PortalHostNode=HRMS&NoCrumbs=yes&PortalKeyStruct=yes';
 
 sub new {
 	my($class, %args) = @_;
