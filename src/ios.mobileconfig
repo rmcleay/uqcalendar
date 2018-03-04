@@ -7,9 +7,9 @@
 			<key>PayloadDescription</key>
 			<string>Configures Subscribed Calendars</string>
 			<key>PayloadDisplayName</key>
-			<string>Subscribed Calendar (MBBS Timetable)</string>
+			<string>Subscribed Calendar (UQ Timetable)</string>
 			<key>PayloadIdentifier</key>
-			<string>net.fearthecow.mbbscalendar.CalSub</string>
+			<string>net.fearthecow.uqcalendar.CalSub</string>
 			<key>PayloadOrganization</key>
 			<string>Robert McLeay</string>
 			<key>PayloadType</key>
@@ -19,9 +19,9 @@
 			<key>PayloadVersion</key>
 			<integer>1</integer>
 			<key>SubCalAccountDescription</key>
-			<string>MBBS Timetable</string>
+			<string>UQ Timetable</string>
 			<key>SubCalAccountHostName</key>
-			<string>mbbscalendar.fearthecow.net/calendar/</string>
+			<string>uqcalendar.fearthecow.net/calendar/</string>
 			<key>SubCalAccountPassword</key>
 			<string>###INSERTPASSWORD###</string>
 			<key>SubCalAccountUseSSL</key>
@@ -31,11 +31,11 @@
 		</dict>
 	</array>
 	<key>PayloadDescription</key>
-	<string>This will configure your MBBS Timetable (scraped from the SOM) to be subscribed to on your calendar, and automatically updated.</string>
+	<string>This will configure your UQ Timetable (scraped from SiNet) to be subscribed to on your calendar, and automatically updated.</string>
 	<key>PayloadDisplayName</key>
-	<string>UQ MBBS Timetable</string>
+	<string>UQ Timetable</string>
 	<key>PayloadIdentifier</key>
-	<string>net.fearthecow.mbbscalendar</string>
+	<string>net.fearthecow.uqcalendar</string>
 	<key>PayloadOrganization</key>
 	<string>Robert McLeay</string>
 	<key>PayloadRemovalDisallowed</key>

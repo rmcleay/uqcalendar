@@ -19,7 +19,7 @@ laptops.  This is what this software does.
 It is written using mod_perl2 and requires Apache2 and SQLite. If you just wish
 to use this software, go to the website instead:
 
-	http://mbbscalendar.fearthecow.net/
+	http://uqcalendar.fearthecow.net/
 
 To install the software, you'll need to put this whole folder in /opt/, symlink
 the apache config into /etc/apache2/sites-enabled/ - or just build the docker image.
