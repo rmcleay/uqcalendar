@@ -6,9 +6,9 @@ use warnings;
 use DBI;
 
 #Database related constants
-my $database="mbbscalendar";
-my $database_server="localhost";
-my $database_server_type="mysql";
+my $database="mbbscalendar.sqlite";
+my $database_server="";
+my $database_server_type="SQLite";
 my $database_user_id="";
 my $database_password=""; 
 
