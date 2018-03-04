@@ -64,49 +64,21 @@ sub download_new_ics {
 	my $ICS_FILE = shift;
 
 
-	my $mbbs = MBBS::SOMCalendar->new(username => $USERNAME,
+	my $uqcal = MBBS::SINetCalendar->new(username => $USERNAME,
 				     password => $PASSWORD);
 
-	unless($mbbs->login()) {
+	unless($uqcal->login()) {
 		return 0; 
 	}
 
 	# Get today's date
 	my ($year, $month, $day) = Today();
 
-	# Make it last sunday if today isn't sunday
-	while (Day_of_Week($year, $month, $day) != 7) {
-		($year, $month, $day) = Add_Delta_Days($year, $month, $day, -1);
-	}
-
 	# Get calendar
-	my $last_week_ical = $mbbs->get_week($year, $month, $day) or die "Couldn't get last week's calendar.\n";
+	my $ical = $uqcal->get_semester($year, $month, $day) or die "Couldn't get last week's calendar.\n";
 	
-	# Get next week's calendar
-	($year, $month, $day) = Add_Delta_Days($year, $month, $day, 7);
-	my $this_week_ical = $mbbs->get_week($year, $month, $day) or die "Couldn't get this week's calendar.\n";
-
-	my @lastw = split("\n", $last_week_ical);
-	pop @lastw;
-
-	my @thisw = split("\n", $this_week_ical);
-	shift @thisw;
-	shift @thisw;
-	shift @thisw;
-	shift @thisw;
-	shift @thisw;
-	shift @thisw;
-
-
 	open WH, ">$ICS_FILE";
-	foreach (@lastw) {
-		next if (m/^CLASS/);
-		print WH $_ . "\r\n";
-	}
-	foreach (@thisw) {
-		next if (m/^CLASS/);
-		print WH $_ . "\r\n";
-	}
+    print WH $ical;
 	close WH;
 
 	return 1;

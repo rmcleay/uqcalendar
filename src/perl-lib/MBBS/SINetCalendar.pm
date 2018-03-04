@@ -10,7 +10,6 @@ our $VERSION = '1.00';
 
 our $LOGIN_URL = 'https://www.sinet.uq.edu.au/ps/uqsinetsignin.html';
 our $TIMETABLE_URL = 'https://www.sinet.uq.edu.au/psp/ps/EMPLOYEE/HRMS/c/UQMY_STUDENT.UQMY_TM_TBL_ICAL.GBL?&STRM=6820&FolderPath=PORTAL_ROOT_OBJECT.UQ_MYSINET.UQ_MYSINET_TIMETABLE.UQMY_TM_TBL_ICAL_GBL&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder';
-our $ICAL_URL = 'https://my.som.uq.edu.au/MBBSTimetable/CalendarDownload.aspx?calType=ical';
 
 sub new {
 	my($class, %args) = @_;
@@ -28,7 +27,7 @@ sub new {
 
 	# Create mech obj
 	my $mech = WWW::Mechanize->new();
-	$mech->agent_alias( 'Windows IE 11' );
+	$mech->agent_alias( 'Mac Safari' );
 	$self->{mech} = $mech;
 
 	return $self;
@@ -51,7 +50,8 @@ sub login {
 		'pwd' => $self->{password},
 	);
 	$mech->click();
-	if ($mech->content =~ m/You may have entered an invalid User ID and.or Password/) {
+	if ($mech->content =~ m/You may have entered an invalid User ID and.or Password/
+     || $mech->content =~ m/User ID and Password are required/) {
 		return 0;
 	}
 	return 1;
@@ -71,14 +71,19 @@ sub get_semester {
 	#
 	# Get timetable
 	#
-	$mech->get( $TIMETABLE_URL );
+    $mech->get($TIMETABLE_URL);
+    $mech->form_id('UQMY_TM_TBL_ICAL');
+    # Get out the ICSSID
+    my $icsid = $mech->value('ICSID');
+    my $icsidenc = url_encode $icsid;
 
-	# Format it to match the website
-	my $date = str2time("$year-$month-$day");
+    my $postcontent = "ICAJAX=1&ICNAVTYPEDROPDOWN=0&ICType=Panel&ICElementNum=0&ICStateNum=1&ICAction=UQ_ICAL_EXP_DRV_UQ_ICAL_DOWNLOAD&ICXPos=0&ICYPos=0&ResponsetoDiffFrame=-1&TargetFrameName=None&FacetPath=None&ICFocus=&ICSaveWarningFilter=0&ICChanged=0&ICAutoSave=0&ICResubmit=0&ICSID=$icsidenc&ICActionPrompt=false&ICBcDomData=UnknownValue&ICPanelName=&ICFind=&ICAddCount=&ICAPPCLSDATA=&ptus_defaultlocalnode=PSFT_HR&ptus_dbname=SA90PROD&ptus_portal=EMPLOYEE&ptus_node=HRMS&ptus_workcenterid=&ptus_componenturl=https%3A%2F%2Fwww.sinet.uq.edu.au%2Fpsp%2Fps%2FEMPLOYEE%2FHRMS%2Fc%2FUQMY_STUDENT.UQMY_TM_TBL_ICAL.GBL";
+    $mech->post('https://www.sinet.uq.edu.au/psc/ps/EMPLOYEE/HRMS/c/UQMY_STUDENT.UQMY_TM_TBL_ICAL.GBL', content => $postcontent);
 
-	# Set the form to send the XML post with the data
-	$mech->form_number(1);
-	$mech->click('UQ_ICAL_EXP_DRV_UQ_ICAL_DOWNLOAD');
+    $mech->content =~ m/window.open..(.*\.ics)',/;
+    my $ics_loc = $1;
+
+    $mech->get($ics_loc);
 
 	# The iCal file
 	my $ical = $mech->content;
@@ -103,11 +108,6 @@ sub _cleanup_ical() {
 			$_ .= "\n" . 'SEQUENCE:' . time;
 			$_ .= "\n" . 'METHOD:PUBLISH' .
 			      "\n" . 'X-WR-CALNAME:MBBS Timetable';
-		} elsif (m/^DESCRIPTION/) {
-			s/^DESCRIPTION:/SUMMARY:/;
-			s/,/\\,/g;
-		} else {
-			s/^SUMMARY:/DESCRIPTION:/;
 		}
 		if ($fixed_ical ne '') {
 			$fixed_ical .= "\n" . $_;
