@@ -6,7 +6,7 @@
 </head>
 <body>
 <div id="title">
-	<h1><img src='logo.png' height="103" align="absmiddle">UQ Automatic Timetable Calendar</h1>
+	<h1><img src='logo.png' height="103" align="absmiddle">UQ Automatic Timetable Subscription Tool</h1>
 </div>
 <div id="menu">
 <ul>
@@ -22,8 +22,13 @@
 
 <h2>What and Why:</h2>
 
-<p> Although the school of medicine makes an iCalendar / vCalendar file
-available of our timetables, this file is broken in a number of ways. It also cannot be subscribed to as you would subscribe to a normal calendar. Given that the school seems prone to giving us timetable change at rather short notice, it would be useful to have the calendar auto-sync to our phones and laptops. This is what this page does.
+<p> Although UQ makes an iCalendar / vCalendar file
+available of our timetables through SiNet, it's a classic example of an IT
+project delivering what was asked, rather than what is needed. It cannot be
+subscribed to as you would subscribe to a normal calendar. Given that some
+faculties seem prone to giving timetable changes at rather short notice, it
+would be useful to have the calendar auto-sync to our phones and laptops. This
+is what this page does.
 </p>
 
 <p><b>This is probably not even beta quality software</b>. Your mileage may
@@ -38,21 +43,12 @@ vary. Don't blame me if you miss an exam. You get what you pay for.</p>
 	<li>Copy and paste the following URL into the box:
 	<blockquote><a href='https://uqcalendar.fearthecow.net/calendar/'>https://uqcalendar.fearthecow.net/calendar/</a></blockquote>
 	</li>
-	<li>Enter your UQ username and password. You may also need to accept (hit continue) the SSL certificate. More on these below.</li>
+	<li>Enter your UQ username and password.</li>
 	<li>Make sure to set the calendar to auto-update - e.g. hourly.</li>
-	<li>Hit OK and enjoy your auto-syncing calendar that doesn't call everything "Live Lecture"!</li>
+	<li>Hit OK and enjoy your auto-syncing calendar!</li>
 </ol>
 
-<p><b>Note:</b> In order not to irritate the UQ SOM IT staff, this site will fetch a new calendar from the SOM no more than once every 3 hours. It will only grab the current week and next week's data. It will cache a uniquely salted (and thus irreversible) hash of your password to authenticate you to provide the calendar again in the meantime.</p>
-
-<h2>If you can't subscribe to a https url:</h2>
-
-<p>If iCal or your calendar program will not allow you to subscribe to an HTTPS calendar, then (at your own risk), you can choose to use a non-SSL version. <b>Your password will be transmitted in plain-text, so you use this at your own risk.</b> The URL to subscribe to instead is:</p>
-
-	<blockquote>http://uqcalendar.fearthecow.net/calendar-nonssl/</blockquote>
-
-
-
+<p><b>Note:</b> In order not to irritate the UQ IT staff, this site will fetch a new calendar from SiNet no more than once every 3 hours. It will cache a uniquely salted (and thus irreversible) hash of your password to authenticate you to provide the calendar again in the meantime.</p>
 
 <h2>Security notes:</h2>
 
@@ -67,7 +63,7 @@ maintaining good security (plus, I also used to work as a sysadmin).</p>
 
 <p><b>Technical guarantees:</b></p>
 <ul>
-	<li>I strongly recommend that you use the SSL version. It's the same encryption as your bank, except I'm just too cheap to buy a certificate, so you get a warning when you first set it up.</li>
+	<li>Encryption is pretty much same technical standard as your bank.</li>
 	<li>I will never store your password in any format that is reversible. I use a salted hash function with a random salt using the SHA-1 algorithm.</li>
 </ul>
 
