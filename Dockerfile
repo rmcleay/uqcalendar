@@ -23,6 +23,7 @@ RUN cpanm Date::Calc
 RUN cpanm Date::Format
 RUN cpanm Date::Parse
 RUN cpanm URL::Encode
+RUN cpanm Crypt::Blowfish
 
 # Add apache config
 RUN rm /etc/apache2/sites-enabled/000-default.conf

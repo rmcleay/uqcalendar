@@ -8,7 +8,7 @@ use File::stat;
 use Crypt::SaltedHash;
 
 use MBBS::DB;
-use MBBS::SOMCalendar;
+use MBBS::SINetCalendar;
 
 ######
 # Firstly, we hook into apache2
@@ -50,7 +50,7 @@ sub handler {
 		# We want to skip to the end
 		$AUTH_SUCCEEDED = 0;
 	} elsif (!-e $ICS_FILE or (-e $ICS_FILE and (time - stat($ICS_FILE)->mtime) >= $MAX_FILE_AGE)) {
-		# Check against the SOM
+		# Check against uq
 		if (check_auth($username, $password)) {
 			$AUTH_SUCCEEDED = 1;
 		}
@@ -102,7 +102,7 @@ sub check_auth() {
 	my $USERNAME = shift;
 	my $PASSWORD = shift;
 
-	my $mbbs = MBBS::SOMCalendar->new(username => $USERNAME,
+	my $mbbs = MBBS::SINetCalendar->new(username => $USERNAME,
 				     password => $PASSWORD);
 
 	if ($mbbs->login()) {

@@ -11,7 +11,7 @@ use MIME::Base64::URLSafe;
 use Date::Calc qw(Today Day_of_Week Add_Delta_Days);
 
 use MBBS::DB;
-use MBBS::SOMCalendar;
+use MBBS::SINetCalendar;
 use MBBS::ICSCalendar qw( download_new_ics );
 
 ######
@@ -66,7 +66,7 @@ sub handler {
 
 	my $ICS_FILE = $ICS_PATH . "$USERNAME.ics";
 	# Check if the file doesn't exist or is too old
-	# If it's not recent, use the UQ SOM for auth.
+	# If it's not recent, use UQ for auth.
 	if (!-e $ICS_FILE or (-e $ICS_FILE and (time - stat($ICS_FILE)->mtime) >= $MAX_FILE_AGE)) {
 		# Download another. This sub will return 0 if auth fails.
 		unless(MBBS::ICSCalendar::download_new_ics($USERNAME, $PASSWORD, $ICS_FILE)) {
