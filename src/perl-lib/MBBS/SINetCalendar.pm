@@ -108,7 +108,7 @@ sub _cleanup_ical() {
 			$_ .= "\n" . 'PRODID:-//FearTheCow.net/MBBS The Ripper V1.1//EN';
 			$_ .= "\n" . 'SEQUENCE:' . time;
 			$_ .= "\n" . 'METHOD:PUBLISH' .
-			      "\n" . 'X-WR-CALNAME:MBBS Timetable';
+			      "\n" . 'X-WR-CALNAME:UQ Timetable';
 		}
 		if ($fixed_ical ne '') {
 			$fixed_ical .= "\n" . $_;

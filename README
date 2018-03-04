@@ -10,28 +10,19 @@ your source available. There is also NO WARRANTY.
 Why?
 ----
 
-Although the UQ School of Medicine makes an iCalendar / vCalendar file
-available of our timetables, this file is broken in a number of ways. It also
+Although UQ makes an iCalendar / vCalendar file available of our timetables, it
 cannot be subscribed to as you would subscribe to a normal calendar. Given that
-the school seems prone to giving us timetable changes at rather short notice,
-it would be useful to have the calendar auto-sync to our phones and laptops.
-This is what this software does. 
+some UQ schools seem prone to giving us timetable changes at rather short
+notice, it would be useful to have the calendar auto-sync to our phones and
+laptops.  This is what this software does. 
 
-It is written using mod_perl2 and requires Apache2 and MySQL. If you just wish
+It is written using mod_perl2 and requires Apache2 and SQLite. If you just wish
 to use this software, go to the website instead:
 
 	http://mbbscalendar.fearthecow.net/
 
 To install the software, you'll need to put this whole folder in /opt/, symlink
-the apache config into /etc/apache2/sites-enabled/.
-
-You then need to edit mysql_db.sql, and import it into MySQL to create the
-database, and then edit the following files accordingly:
-
-apache.conf
-perl-lib/MBBS/DB.pm
-
-Restart Apache, and you should be good to go!
+the apache config into /etc/apache2/sites-enabled/ - or just build the docker image.
 
 Cheers,
 
