@@ -1,76 +1,223 @@
-<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<!DOCTYPE HTML>
+<!--
+	Urban by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
 <html>
-<head>
-<title>UQ Timetable Calendar</title>
-<link rel="stylesheet" type="text/css" href="main.css">
-</head>
-<body>
-<div id="title">
-	<h1><img src='logo.png' height="103" align="absmiddle">UQ Automatic Timetable Subscription Tool</h1>
-</div>
-<div id="menu">
-<ul>
-	<li><a href="index.html">Home</a></li>
-	<li><a href="ios.html">iPhone and iPad</a></li>
-	<li><a href="gcalandroid.html">Android / Google Calendar</a></li>
-	<li><a href="https://sinet.uq.edu.au/" target='_new'>SiNet</a></li>
-</ul>
-</div>
-<div id="content">
+	<head>
+		<title>Your UQ Timetable, Done Right</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body>
 
-	<p><b>New:</b> Now easy setup for <a href='ios.html'>iPhones and iPads</a>, and <a href="gcalandroid.html">Android and Google Calendar!</a></p>
+		<!-- Header -->
+			<header id="header" class="alt">
+				<div class="logo"><a href="index.html">Your UQ Timetable, <span>done right.</span></a></div>
+			</header>
 
-<h2>What and Why:</h2>
+		<!-- Banner -->
+			<section id="banner">
+				<div class="inner">
+					<header>
+						<h1>Your UQ Timetable, done right.</h1>
+                        <p>Think that SINet's timetable was developed to a (bad) spec, rather than to students' needs? <br>Subscribe and get updates automatically, the way calendars are supposed to work.</p>
+					</header>
+					<a href="#main" class="button big scrolly">Learn More</a>
+				</div>
+			</section>
 
-<p> Although UQ makes an iCalendar / vCalendar file
-available of our timetables through SiNet, it's a classic example of an IT
-project delivering what was asked, rather than what is needed. It cannot be
-subscribed to as you would subscribe to a normal calendar. Given that some
-faculties seem prone to giving timetable changes at rather short notice, it
-would be useful to have the calendar auto-sync to our phones and laptops. This
-is what this page does.
-</p>
+		<!-- Main -->
+			<div id="main">
 
-<p><b>This is probably not even beta quality software</b>. Your mileage may
-vary. Don't blame me if you miss an exam. You get what you pay for.</p> 
+				<!-- Section -->
+					<section class="wrapper style1">
+						<div class="inner">
+							<!-- 2 Columns -->
+								<div class="flex flex-2">
+									<div class="col col1">
+										<div class="image round fit">
+											<a href="generic.html" class="link"><img src="images/logo.png" alt="" /></a>
+										</div>
+									</div>
+									<div class="col col2">
+										<h3>So what is this site?</h3>
+                                        <p> Although UQ makes an iCalendar / vCalendar file
+                                        available of our timetables through SiNet, it's a classic example of an IT
+                                        project delivering what was asked, rather than what is needed. It cannot be
+                                        subscribed to as you would subscribe to a normal calendar. Given that some
+                                        faculties seem prone to giving timetable changes at rather short notice, it
+                                        would be useful to have the calendar auto-sync to our phones and laptops. This
+                                        is what this page does.
+                                        </p>
 
-	<h2>How to subscribe using Desktop Software:</h2>
+                                        <p><b>This is probably not even beta quality software</b>. Your mileage may
+                                        vary. Don't blame me if you miss an exam. You get what you pay for.</p> 
+										<a href="#getstarted" class="button scrolly">Get Started</a>
+									</div>
+								</div>
+						</div>
+					</section>
 
-<ol>
-	<li>In iCal on your Mac (not tested elsewhere yet), click on the "Calendar"
-	menu, then subscribe.</li>
-       
-	<li>Copy and paste the following URL into the box:
-	<blockquote><a href='https://uqcalendar.fearthecow.net/calendar/'>https://uqcalendar.fearthecow.net/calendar/</a></blockquote>
-	</li>
-	<li>Enter your UQ username and password.</li>
-	<li>Make sure to set the calendar to auto-update - e.g. hourly.</li>
-	<li>Hit OK and enjoy your auto-syncing calendar!</li>
-</ol>
 
-<p><b>Note:</b> In order not to irritate the UQ IT staff, this site will fetch a new calendar from SiNet no more than once every 3 hours. It will cache a uniquely salted (and thus irreversible) hash of your password to authenticate you to provide the calendar again in the meantime.</p>
+				<!-- Section -->
+					<section class="wrapper style2">
+						<div class="inner">
+							<div class="flex flex-2">
+								<div class="col col2">
+									<h3>A Note on Security</h3>
+                                    <p>This service requires your UQ username and password as it simulates a
+                                    web-browsing session to the SiNet timetable page to get your timetable data.
+                                    Ultimately, you have to trust that I am honest, handle your password correctly,
+                                    and that I won't keep a copy of it, pretend to be you, and change your degree to
+                                    agricultural science / arts / engineering (pick your least favourite).</p>
 
-<h2>Security notes:</h2>
+                                    <p>I do, however, use this site myself, so I have a vested interest in
+                                    maintaining good security.</p>
 
-<p>This service requires your UQ username and password as it simulates a
-web-browsing session to the SiNet timetable page to get your timetable data.
-Ultimately, you have to trust that I am honest, handle your password correctly,
-and that I won't keep a copy of it, pretend to be you, and change your degree in sinet to
-be agricultural science.</p>
+                                    <p><b>Technical guarantees:</b></p>
+                                    <ul>
+                                        <li>Encryption is the same technical standard as your bank.</li>
+                                        <li>I do not and will never store your password in any format that is reversible. <br>(i.e. I use a salted hash function with a random salt using the SHA-1 algorithm.)</li>
+                                    </ul>
+								</div>
+								<div class="col col1 first">
+									<div class="image round fit">
+										<a href="generic.html" class="link"><img src="images/security.jpg" alt="" /></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
 
-<p>Note, however, that I use this site myself, so I do have vested interest in
-maintaining good security (plus, I also used to work as a sysadmin).</p>
+				<!-- Section -->
+					<section class="wrapper style1">
+						<div id='getstarted' class="inner">
+							<header class="align-center">
+								<h2>Get Started</h2>
+								<p>Follow the instructions for your choice of device (you can set up multiple different devices, one at a time).
+                                <br>NB: In order not to irritate the UQ IT staff, this site will fetch a new calendar from SINet no more than once every 3 hours.</p>
+							</header>
+							<div class="flex flex-3">
+								<div class="col align-center">
+									<div class="image round fit">
+										<img src="images/mac.jpg" alt="" />
+									</div>
+									<p>Desktop Calendar software, such as iCal on Mac.</p>
+									<a href="#setupdesktop" class="button">Setup my Desktop</a>
+								</div>
+								<div class="col align-center">
+									<div class="image round fit">
+										<img src="images/iphone.png" alt="" />
+									</div>
+									<p>iPhones, iPads</p>
+									<a href="/ios/" class="button">Setup my iPhone or iPad</a>
+								</div>
+								<div class="col align-center">
+									<div class="image round fit">
+										<img src="images/gcal.png" alt="" />
+									</div>
+									<p>Google Calendar / Android Device</p>
+									<a href="#setupgcal" class="button">Setup my Google Thing</a>
+								</div>
+							</div>
+						</div>
+					</section>
 
-<p><b>Technical guarantees:</b></p>
-<ul>
-	<li>Encryption is pretty much same technical standard as your bank.</li>
-	<li>I will never store your password in any format that is reversible. I use a salted hash function with a random salt using the SHA-1 algorithm.</li>
-</ul>
+				<!-- Section -->
+                <div id='setupdesktop' class="inner"></div>
+					<section class="wrapper style2">
+						<div class="inner">
+							<div class="flex flex-2">
+								<div class="col col2">
+									<h3>Subscribe using Desktop Software:</h3>
+                                    <ol>
+                                        <li>In iCal on your Mac (sorry non-Mac users, this is confirmed to work, but you'll have it figure it out yourselves), click on the "Calendar"
+                                            menu, then subscribe.</li>
 
-</div>
-<div id="footer"> Copyright &copy; 2011, 
-	<a href="mailto:robert@fearthecow.net">Robert McLeay</a>. All rights reserved. 
-	<br>Code is available (open source) under the Affero GPL 3 on <a href='https://bitbucket.org/chesftc/mbbscalendar/'>BitBucket under chesftc/mbbscalendar</a>.
-</div> 
-</body>
+                                        <li>Copy and paste the following URL into the box:
+                                            <blockquote><b>https://uqcalendar.fearthecow.net/calendar/</b></blockquote>
+                                        </li>
+                                        <li>Enter your UQ username and password.</li>
+                                        <li>Make sure to set the calendar to auto-update - e.g. hourly.</li>
+                                        <li>Hit OK and enjoy your auto-syncing calendar!</li>
+                                    </ol>
+								</div>
+
+								<div class="col col1 first">
+									<div class="image round fit">
+										<a href="generic.html" class="link"><img src="images/mac.jpg" alt="" /></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+
+                    				<!-- Section -->
+                <div id='setupgcal' class="inner"></div>
+					<section class="wrapper style3">
+						<div class="inner">
+							<div class="flex flex-2">
+
+                                <div class="col col1 first">
+									<div class="image round fit">
+										<a href="generic.html" class="link"><img src="images/gcal.png" alt="" /></a>
+									</div>
+								</div>
+
+								<div class="col col2">
+									<h3>Subscribe using Google Calendar / Android:</h3>
+                                    <p>Please enter your username and password below. This will not be stored on this server, but will rather make a magic link with encrypted username and password.</p>
+                                    <form action='/gcalsubmit/' method=POST>
+                                        <div class="row">
+                                            <div class="6u 12u$(xsmall)">
+                                                <input type=text name=username placeholder="Username"> <br>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="6u 12u$(xsmall)">
+                                                <input type=password name=password placeholder="Password"> <br>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="6u 12u$(xsmall)">
+                                                <input type=password name=password2 placeholder="Verify Password"> <br>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="6u 12u$(xsmall)">
+                                                <input type='submit'>
+                                            </div>
+                                        </div>
+                                    </form>
+								</div>
+							</div>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="copyright">
+					<ul class="icons">
+						<li><a href="https://twitter.com/robmcleay" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="mailto:robert@fearthecow.net?subject=UQ%20Timetable" class="icon fa-envelope"><span class="label">Email</span></a></li>
+					</ul>
+					<p>&copy; Robert McLeay. All rights reserved. Design based on <a rel='nofollow' href="https://templated.co">TEMPLATED</a>.
+                    <br>Code is available (open source) under the Affero GPL 3 on <a href='https://bitbucket.org/chesftc/mbbscalendar/'>BitBucket under chesftc/mbbscalendar</a>.</p>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
 </html>
