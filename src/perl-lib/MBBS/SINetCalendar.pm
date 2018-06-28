@@ -65,8 +65,8 @@ sub get_semester {
 
     my $TIMETABLE_URL;
 
-    # TODO - figure this out later
-    if ($month <= 6) {
+    # Last day of semester is june 23rd
+    if ($month < 6 || ($month == 6 && $day < 23)) {
         # Semester 1
         $TIMETABLE_URL = $TIMETABLE_URL_SEM1;
     } else {
