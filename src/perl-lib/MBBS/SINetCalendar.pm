@@ -9,8 +9,9 @@ use URL::Encode qw( url_encode );
 
 our $VERSION = '1.00';
 
-our $LOGIN_URL = 'https://www.sinet.uq.edu.au/ps/uqsinetsignin.html';
-our $TIMETABLE_URL = 'https://www.sinet.uq.edu.au/psc/ps/EMPLOYEE/HRMS/c/UQMY_STUDENT.UQMY_TM_TBL_ICAL.GBL?&STRM=6820&FolderPath=PORTAL_ROOT_OBJECT.UQ_MYSINET.UQ_MYSINET_TIMETABLE.UQMY_TM_TBL_ICAL_GBL&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder&PortalActualURL=https%3a%2f%2fwww.sinet.uq.edu.au%2fpsc%2fps%2fEMPLOYEE%2fHRMS%2fc%2fUQMY_STUDENT.UQMY_TM_TBL_ICAL.GBL%3f%26STRM%3d6820&PortalContentURL=https%3a%2f%2fwww.sinet.uq.edu.au%2fpsc%2fps%2fEMPLOYEE%2fHRMS%2fc%2fUQMY_STUDENT.UQMY_TM_TBL_ICAL.GBL&PortalContentProvider=HRMS&PortalCRefLabel=Timetable%20iCalendar%20Download&PortalRegistryName=EMPLOYEE&PortalServletURI=https%3a%2f%2fwww.sinet.uq.edu.au%2fpsp%2fps%2f&PortalURI=https%3a%2f%2fwww.sinet.uq.edu.au%2fpsc%2fps%2f&PortalHostNode=HRMS&NoCrumbs=yes&PortalKeyStruct=yes';
+our $LOGIN_URL = 'https://www.sinet.uq.edu.au/psp/ps/?cmd=login&languageCd=ENG&';
+our $TIMETABLE_URL_SEM1 = 'https://www.sinet.uq.edu.au/psc/ps/EMPLOYEE/SA/c/UQMY_STUDENT.UQMY_TM_TBL_ICAL.GBL?STRM=6820';
+our $TIMETABLE_URL_SEM2 = 'https://www.sinet.uq.edu.au/psc/ps/EMPLOYEE/SA/c/UQMY_STUDENT.UQMY_TM_TBL_ICAL.GBL?STRM=6860';
 
 sub new {
 	my($class, %args) = @_;
@@ -62,24 +63,42 @@ sub get_semester {
 	my ($self, $year, $month, $day) = @_;
 	my $mech = $self->{mech};
 
+    my $TIMETABLE_URL;
+
     # TODO - figure this out later
     if ($month <= 6) {
         # Semester 1
+        $TIMETABLE_URL = $TIMETABLE_URL_SEM1;
     } else {
         # Semester 2
+        $TIMETABLE_URL = $TIMETABLE_URL_SEM2;
     }
 
 	#
 	# Get timetable
 	#
     $mech->get($TIMETABLE_URL);
+    
     $mech->form_id('UQMY_TM_TBL_ICAL');
+
+    
     # Get out the ICSSID
     my $icsid = $mech->value('ICSID');
     my $icsidenc = url_encode $icsid;
 
-    my $postcontent = "ICAJAX=1&ICNAVTYPEDROPDOWN=0&ICType=Panel&ICElementNum=0&ICStateNum=1&ICAction=UQ_ICAL_EXP_DRV_UQ_ICAL_DOWNLOAD&ICXPos=0&ICYPos=0&ResponsetoDiffFrame=-1&TargetFrameName=None&FacetPath=None&ICFocus=&ICSaveWarningFilter=0&ICChanged=0&ICAutoSave=0&ICResubmit=0&ICSID=$icsidenc&ICActionPrompt=false&ICBcDomData=UnknownValue&ICPanelName=&ICFind=&ICAddCount=&ICAPPCLSDATA=&ptus_defaultlocalnode=PSFT_HR&ptus_dbname=SA90PROD&ptus_portal=EMPLOYEE&ptus_node=HRMS&ptus_workcenterid=&ptus_componenturl=https%3A%2F%2Fwww.sinet.uq.edu.au%2Fpsp%2Fps%2FEMPLOYEE%2FHRMS%2Fc%2FUQMY_STUDENT.UQMY_TM_TBL_ICAL.GBL";
-    $mech->post('https://www.sinet.uq.edu.au/psc/ps/EMPLOYEE/HRMS/c/UQMY_STUDENT.UQMY_TM_TBL_ICAL.GBL', content => $postcontent);
+    # They're using javascript to change a whole bunch of
+    # form fields that we're just going to set manually.
+    # Much cheaper than running a JS interpreter.
+    my $postcontent = join '&', map {
+        if ($_->name eq 'ICAction') {
+           'ICAction=UQ_ICAL_EXP_DRV_UQ_ICAL_DOWNLOAD';
+        } else {
+            $_->name . '=' . url_encode $_->value;
+        }
+    } $mech->current_form->inputs;
+    $postcontent .= '&ICAJAX=1';
+
+    $mech->post('https://www.sinet.uq.edu.au/psc/ps/EMPLOYEE/SA/c/UQMY_STUDENT.UQMY_TM_TBL_ICAL.GBL', content => $postcontent);
 
     $mech->content =~ m/window.open..(.*\.ics)',/;
     my $ics_loc = $1;

@@ -17,6 +17,6 @@ my $uqcal = MBBS::SINetCalendar->new(username => $USERNAME,
 	}
 
 	# Get calendar
-	my $ical = $uqcal->get_semester(2017, 2, 2) or die "Couldn't get calendar.\n";
+	my $ical = $uqcal->get_semester(2018, 2, 2) or die "Couldn't get calendar.\n";
 	
     print $ical;
