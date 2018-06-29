@@ -69,6 +69,20 @@
 			</div>
 		</div>
 		<div id="footer">
+        </div>
+
+<script>
+    function isFacebookApp() {
+        var ua = navigator.userAgent || navigator.vendor || window.opera;
+        return (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1);
+    }
+    // self executing function here - document.ready equivalent
+    (function() {
+        if (isFacebookApp()) {
+            document.getElementById('content').innerHTML = "<p align=center><b>Unfortunately, Facebook's browser is pretty broken.</b></p><p align=center>Please open this page using Safari, instead of the Facebook browser (press on the dots in the top right).</p>";
+        }
+    })();
+</script>
 
 		</body>
 
