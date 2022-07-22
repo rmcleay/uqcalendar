@@ -7,6 +7,13 @@ This code is under the Affero GPL 3, see the file LICENSE for details.
 In short, if you modify this code and run a server elsewhere, you must make
 your source available. There is also NO WARRANTY.
 
+No Longer Available Online
+--------------------------
+
+If you wish to use this, you'll need to deploy it yourself, as ITS seem uninterested in
+fixing their own broken service, but requested this be shutdown as a security issue because
+it requires pass-through authentication (albeit non-stored).
+
 Why?
 ----
 
